@@ -20,6 +20,7 @@ class IMessage {
       'http://192.168.80.208:3000',
       <String, dynamic>{
         'transports': ['websocket'],
+        'query': 'token=da90bfa6-443f-403c-ae5c-d4704b53d58'
       },
     );
 
@@ -27,7 +28,18 @@ class IMessage {
       print('connect successed');
       this.init();
     });
-    
+
+    this.socket.on('disconnect', (data) {
+      print('disconnect');
+      print(data);
+    });
+
+    this.socket.on('error', (error) {
+      if (error == 'Authentication error') {
+        print('token验证失败');
+      }
+    });
+
     this.socket.on('connect_error', this.connectError);
   }
 
@@ -41,7 +53,7 @@ class IMessage {
   // 登录
   Future login() {
     // this.socket.emitWithAck('event', data)
-    return this.invoke('login', {'socketId': this.socket.id});
+    return this.invoke('login', {'socketId': this.socket.id, 'userId': 10000});
   }
 
   Future invoke(String type, Map args) {
