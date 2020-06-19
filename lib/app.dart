@@ -21,7 +21,7 @@ class _AppState extends State<App> {
       keepPage: true,
     );
 
-    this.initIMessage();
+    // this.initIMessage();
   }
 
   void initIMessage() {
@@ -39,25 +39,52 @@ class _AppState extends State<App> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              IconData(0xe7f9, fontFamily: 'IconFont'),
+              size: 28,
+            ),
+            activeIcon: Icon(
+              IconData(0xe7f8, fontFamily: 'IconFont'),
+              size: 28,
+            ),
             title: Text('微信'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.more),
+            icon: Icon(
+              IconData(0xe601, fontFamily: 'IconFont'),
+              size: 28,
+            ),
+            activeIcon: Icon(
+              IconData(0xe600, fontFamily: 'IconFont'),
+              size: 28,
+            ),
             title: Text('通讯录'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.find_in_page),
+            icon: Icon(
+              IconData(0xe66c, fontFamily: 'IconFont'),
+              size: 24,
+            ),
+            activeIcon: Icon(
+              IconData(0xe68f, fontFamily: 'IconFont'),
+              size: 24,
+            ),
             title: Text('发现'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(
+              IconData(0xe60d, fontFamily: 'IconFont'),
+              size: 24,
+            ),
+            activeIcon: Icon(
+              IconData(0xe60e, fontFamily: 'IconFont'),
+              size: 24,
+            ),
             title: Text('我'),
           ),
         ],
         type: BottomNavigationBarType.fixed,
         currentIndex: _tabIndex,
-        iconSize: 24.0,
         onTap: (index) {
           setState(() {
             _tabIndex = index;

@@ -41,6 +41,8 @@ class IMessage {
     });
 
     this.socket.on('connect_error', this.connectError);
+
+    this.socket.on('offlineMsgs', this.offlineMsgs)
   }
 
   // 初始化
@@ -73,6 +75,26 @@ class IMessage {
     );
 
     return future;
+  }
+
+  // 在线接收消息
+  void receiveMsg(Map msg, Function callback) {
+    try {
+      print(msg);
+      callback({'code': 200});
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // 接收离线消息
+  void offlineMsgs(List msgs, Function callback) {
+    try {
+      print(msgs);
+      callback({'code': 200});
+    } catch (e) {
+      print(e);
+    }
   }
 
   void connectError(err) {
