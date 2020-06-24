@@ -17,12 +17,12 @@ class NavigatorUtil {
     Navigator.pop(context, result);
   }
 
-  /// 跳转至指定的页面
-  static void goPage(BuildContext context, String route) {
+  static void goLoginPage(BuildContext context) {
     Application.router.navigateTo(
       context,
-      route,
-      transition: TransitionType.cupertino,
+      Routes.login,
+      replace: true,
+      transition: TransitionType.fadeIn,
     );
   }
 
@@ -36,8 +36,8 @@ class NavigatorUtil {
   }
 
   /// 跳转到 传参demo 页面
-  static void goDemoParamsPage(BuildContext context, String name, int age,
-      double score, bool sex) {
+  static void goDemoParamsPage(
+      BuildContext context, String name, int age, double score, bool sex) {
     /// 对中文进行编码
     String mName = FluroConvertUtils.fluroCnParamsEncode(name);
 
@@ -45,8 +45,7 @@ class NavigatorUtil {
     // String personJson = FluroConvertUtils.object2string(person);
     Application.router.navigateTo(
       context,
-      Routes.demoParams +
-          "?name=$mName&age=$age&score=$score&sex=$sex",
+      Routes.demoParams + "?name=$mName&age=$age&score=$score&sex=$sex",
     );
   }
 

@@ -42,7 +42,7 @@ class IMessage {
 
     this.socket.on('connect_error', this.connectError);
 
-    this.socket.on('offlineMsgs', this.offlineMsgs)
+    // this.socket.on('offlineMsgs', this.offlineMsgs)
   }
 
   // 初始化

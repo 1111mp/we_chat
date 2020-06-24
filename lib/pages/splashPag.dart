@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:we_chat/common/utils/share_prefs.dart';
 import 'package:we_chat/router/NavigatorUtil.dart';
 // import 'package:rxdart/rxdart.dart';
 
@@ -15,8 +16,17 @@ class _SplashPagState extends State<SplashPag> {
 
   @override
   void initState() {
-    _timer = Timer(Duration(seconds: 2), () {
-      NavigatorUtil.goAppPage(context);
+    _timer = Timer(Duration(seconds: 2), () async {
+      final SharePrefs prefs = await SharePrefs.getInstance();
+      final String token = prefs.getString('token');
+
+      if (token == null) {
+        /** 未登录 */
+        NavigatorUtil.goLoginPage(context);
+      } else {
+        /** 登录 */
+        NavigatorUtil.goAppPage(context);
+      }
     });
     // Future.delayed(Duration(seconds: 5), () {
     //   NavigatorUtil.goHomePage(context);

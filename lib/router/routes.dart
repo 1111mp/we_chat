@@ -6,6 +6,7 @@ import 'package:we_chat/router/route_handlers.dart';
 
 class Routes {
   static String root = "/";
+  static String login = "/login";
   static String app = "/app";
   static String browser = "/browser";
   static String video = "/video";
@@ -26,6 +27,7 @@ class Routes {
       },
     );
     router.define(root, handler: splashHandler);
+    router.define(login, handler: loginHandle);
     router.define(app, handler: appHandle);
     // router.define(browser, handler: browserHandle);
     // router.define(share, handler: shareHandle);

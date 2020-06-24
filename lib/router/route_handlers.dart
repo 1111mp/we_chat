@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:we_chat/pages/address/index.dart';
 import 'package:we_chat/pages/find/index.dart';
 import 'package:we_chat/pages/home/index.dart';
+import 'package:we_chat/pages/login.dart';
 import 'package:we_chat/pages/mine/index.dart';
 import 'package:we_chat/pages/splashPag.dart';
 
@@ -12,6 +13,12 @@ import '../app.dart';
 Handler splashHandler = new Handler(
   handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return new SplashPag();
+  },
+);
+
+Handler loginHandle = new Handler(
+  handlerFunc: (BuildContext context, Map params) {
+    return new LoginPage();
   },
 );
 
