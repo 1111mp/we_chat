@@ -5,9 +5,15 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Flutter",
+			"name": "Flutter prod",
 			"request": "launch",
 			"type": "dart"
+		},
+		{
+			"name": "Flutter dev",
+			"request": "launch",
+			"type": "dart",
+			"args": ["-t", "lib/main_dev.dart"]
 		}
 	]
 }

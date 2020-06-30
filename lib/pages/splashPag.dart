@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:we_chat/common/utils/share_prefs.dart';
+import 'package:we_chat/common/config/index.dart';
+// import 'package:we_chat/common/utils/share_prefs.dart';
 import 'package:we_chat/router/NavigatorUtil.dart';
 // import 'package:rxdart/rxdart.dart';
 
@@ -17,10 +19,11 @@ class _SplashPagState extends State<SplashPag> {
   @override
   void initState() {
     _timer = Timer(Duration(seconds: 2), () async {
-      final SharePrefs prefs = await SharePrefs.getInstance();
-      final String token = prefs.getString('token');
-
-      if (token == null) {
+      // final SharePrefs prefs = await SharePrefs.getInstance();
+      // final String token = prefs.getString(getConfig()['token']);
+      final String token = SpUtil.getString(getConfig()['token']);
+      print(token);
+      if (token.isEmpty) {
         /** 未登录 */
         NavigatorUtil.goLoginPage(context);
       } else {

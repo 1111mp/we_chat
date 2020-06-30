@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_chat/widgets/app_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,8 +14,27 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('home'),
+      appBar: MyAppBar(
+        centerTitle: '微信',
+        isBack: false,
+      ),
+      body: SafeArea(
+        child: ListView.separated(
+          physics: BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
+          separatorBuilder: (context, index) => Divider(
+            height: 0.6,
+          ),
+          itemCount: 3,
+          itemBuilder: (context, index) {
+            return Container(
+              width: double.infinity,
+              height: 54.0,
+              color: Colors.red,
+            );
+          },
+        ),
       ),
     );
   }

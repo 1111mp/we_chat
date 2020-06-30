@@ -65,6 +65,10 @@ class SharePrefs {
   Set<String> getKeys() {
     return this.prefs.getKeys();
   }
+
+  void remove(String key) {
+    this.prefs.remove(key);
+  }
 }
 
 // void aaa() async {

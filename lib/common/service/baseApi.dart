@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:cookie_jar/cookie_jar.dart';
+import 'package:we_chat/common/config/index.dart';
 
 class DioInstance {
   // 实现dio的单例 此单例模式仅适用于单线程中
@@ -16,13 +17,14 @@ class DioInstance {
   }
 
   Dio dio;
-  Dio tokenDio;
+  // Dio tokenDio;
   String csrfToken;
 
   // 构造函数中做一些初始化配置
   DioInstance() {
+    print(getConfig()['baseUrl']);
     final options = BaseOptions(
-      baseUrl: "https://www.xx.com/api", // 请求的base地址,可以包含子路径
+      baseUrl: getConfig()['baseUrl'], // 请求的base地址,可以包含子路径
       connectTimeout: 5000, // 连接服务器超时时间，单位是毫秒
       receiveTimeout: 100000, // 2.x中为接收数据的最长时限
       // v3.0.3以下写法
@@ -31,16 +33,18 @@ class DioInstance {
       // contentType: ContentType.parse("application/x-www-form-urlencoded"),
       // v3.0.3以上写法 https://github.com/flutterchina/dio/issues/512
       // contentType: Headers.formUrlEncodedContentType,
-      contentType: Headers.jsonContentType,
+      // contentType: Headers.jsonContentType,
       //表示期望以那种格式(方式)接受响应数据。接受4种类型 `json`, `stream`, `plain`, `bytes`. 默认值是 `json`,
       responseType: ResponseType.json,
     );
 
     dio = new Dio(options);
-    tokenDio = new Dio(options);
+    // tokenDio = new Dio(options);
 
     // Cookie管理
     dio.interceptors.add(CookieManager(CookieJar()));
+    // 是否开启请求日志
+    dio.interceptors.add(LogInterceptor(responseBody: true));
 
     // 拦截器
     dio.interceptors
@@ -163,7 +167,7 @@ class DioInstance {
     try {
       response = await dio.post(
         url,
-        queryParameters: data,
+        data: data,
         onSendProgress: onSendProgress,
         options: options,
         cancelToken: cancelToken,
