@@ -8,6 +8,8 @@ import 'application.dart';
 class NavigatorUtil {
   /// 返回
   static void goBack(BuildContext context) {
+    unfocus();
+
     /// 其实这边调用的是 Navigator.pop(context);
     Application.router.pop(context);
   }
@@ -107,5 +109,12 @@ class NavigatorUtil {
       Routes.transitionCupertinoDemo + "?title=$title",
       transition: TransitionType.cupertino,
     );
+  }
+
+  static void unfocus() {
+    // 使用下面的方式，会触发不必要的build。
+    // FocusScope.of(context).unfocus();
+    // https://github.com/flutter/flutter/issues/47128#issuecomment-627551073
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 }

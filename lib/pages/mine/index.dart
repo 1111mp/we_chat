@@ -1,6 +1,8 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:we_chat/common/config/index.dart';
+import 'package:we_chat/common/utils/utils.dart';
+import 'package:we_chat/widgets/send_type_dialog.dart';
 // import 'package:we_chat/common/utils/share_prefs.dart';
 
 class MinePage extends StatefulWidget {
@@ -35,10 +37,22 @@ class _MinePageState extends State<MinePage>
               // disabledTextColor: Color(0xFFB3B3B3),
               // highlightColor: Color(0xFF4EAB5F),
               // splashColor: Color(0xFF4EAB5F),
-              onPressed: () async {
+              onPressed: () {
                 // final prefs = await SharePrefs.getInstance();
                 // prefs.remove(getConfig()['token']);
-                SpUtil.remove(getConfig()['token']);
+                // SpUtil.remove(getConfig()['token']);
+                showElasticDialog<void>(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return SendTypeDialog(
+                        onPressed: (i, value) {
+                          setState(() {
+                            // _sendType = i;
+                          });
+                        },
+                      );
+                    });
               },
             ),
           ],

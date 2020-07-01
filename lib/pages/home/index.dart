@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:we_chat/pages/home/room_item.dart';
 import 'package:we_chat/widgets/app_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +13,8 @@ class _HomePageState extends State<HomePage>
   @override
   bool get wantKeepAlive => true;
 
+  final SlidableController _slidableController = SlidableController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,19 +23,16 @@ class _HomePageState extends State<HomePage>
         isBack: false,
       ),
       body: SafeArea(
-        child: ListView.separated(
+        child: ListView.builder(
           physics: BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
-          separatorBuilder: (context, index) => Divider(
-            height: 0.6,
-          ),
-          itemCount: 3,
+          itemCount: 2,
+          itemExtent: 70.0,
           itemBuilder: (context, index) {
-            return Container(
-              width: double.infinity,
-              height: 54.0,
-              color: Colors.red,
+            return RoomItem(
+              index: index,
+              slidableController: _slidableController,
             );
           },
         ),

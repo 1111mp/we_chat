@@ -25,7 +25,7 @@ class _SplashPagState extends State<SplashPag> {
       print(token);
       if (token.isEmpty) {
         /** 未登录 */
-        NavigatorUtil.goLoginPage(context);
+        NavigatorUtil.goAppPage(context);
       } else {
         /** 登录 */
         NavigatorUtil.goAppPage(context);
