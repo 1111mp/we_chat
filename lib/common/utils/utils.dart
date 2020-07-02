@@ -70,7 +70,7 @@ Widget _buildMaterialDialogTransitions(
 }
 
 Future<T> showElasticDialog<T>({
-  BuildContext context,
+  @required BuildContext context,
   bool barrierDismissible = true,
   WidgetBuilder builder,
 }) {
@@ -121,11 +121,13 @@ Widget _buildDialogTransitions(
       position: Tween<Offset>(
         begin: const Offset(0.0, 0.3),
         end: Offset.zero,
-      ).animate(CurvedAnimation(
-        parent: animation,
-        curve: const ElasticInCurve(0.85),
-        reverseCurve: Curves.easeOutBack,
-      )),
+      ).animate(
+        CurvedAnimation(
+          parent: animation,
+          curve: const ElasticOutCurve(0.85),
+          reverseCurve: Curves.easeOutBack,
+        ),
+      ),
       child: child,
     ),
   );
